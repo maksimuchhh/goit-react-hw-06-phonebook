@@ -14,7 +14,8 @@ export class App extends Component {
   state = {
     contacts: [],
     filter: "",
-    error: null,
+    error: false,
+    errorText: null,
   };
 
   addContact = (evt, state) => {
@@ -22,14 +23,20 @@ export class App extends Component {
     const id = uuidv4();
     const name = state.name;
     const number = state.number;
-    if (!name) return;
+    if ((number.length || name.length) === 0) {
+      this.setState({ errorText: `Enter all empties`, error: true });
+      setTimeout(() => {
+        this.setState({ error: false });
+      }, 5000);
+      return;
+    }
     const dublicated = this.props.contacts.find((el) => {
       return el.name === name;
     });
     if (!(dublicated === undefined)) {
-      this.setState({ error: `You already add ${name}` });
+      this.setState({ errorText: `You already add ${name}`, error: true });
       setTimeout(() => {
-        this.setState({ error: null });
+        this.setState({ error: false });
       }, 5000);
       return;
     } else {
@@ -44,14 +51,12 @@ export class App extends Component {
     return (
       <div className={styles.container}>
         <CSSTransition
-          in={this.state.error !== null}
+          in={this.state.error !== false}
           timeout={300}
           classNames={styles}
           unmountOnExit
         >
-          <header>
-            <div className={styles.error}>{this.state.error}</div>
-          </header>
+          <div className={styles.error}>{this.state.errorText}</div>
         </CSSTransition>
 
         <CSSTransition
