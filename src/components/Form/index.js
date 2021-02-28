@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Input from "./Input";
 import Button from "./Button";
+import styles from "./Form.module.css";
 
 export default class Form extends Component {
   state = {
@@ -19,6 +20,7 @@ export default class Form extends Component {
     const { addContact } = this.props;
     return (
       <form
+        className={styles.form}
         onSubmit={(evt) => {
           this.setState({ name: "", number: "" });
           return addContact(evt, this.state);

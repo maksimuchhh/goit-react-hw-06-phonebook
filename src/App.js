@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./normalize.css";
 import Section from "./components/Section";
 import Input from "./components/Form/Input";
 import Form from "./components/Form";
@@ -48,7 +49,9 @@ export class App extends Component {
           classNames={styles}
           unmountOnExit
         >
-          <div className={styles.error}>{this.state.error}</div>
+          <header>
+            <div className={styles.error}>{this.state.error}</div>
+          </header>
         </CSSTransition>
 
         <CSSTransition
@@ -58,7 +61,7 @@ export class App extends Component {
           classNames={styles}
           unmountOnExit
         >
-          <h1>Phonebook</h1>
+          <h1 className={styles.title}>Phonebook</h1>
         </CSSTransition>
         <Form addContact={this.addContact} />
         {this.props.contacts.length > 0 && (
