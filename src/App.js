@@ -8,7 +8,8 @@ import { CSSTransition } from "react-transition-group";
 import styles from "./App.module.css";
 import { connect } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import contactsActions from "./redux/contactsActions";
+import { changeFilter } from "./redux/contactsActions";
+import contactsOperations from "./redux/contactsOperations";
 
 export class App extends Component {
   state = {
@@ -17,6 +18,10 @@ export class App extends Component {
     error: false,
     errorText: null,
   };
+
+  async componentDidMount() {
+    this.props.fetchContacts();
+  }
 
   addContact = (evt, state) => {
     evt.preventDefault();
@@ -95,9 +100,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeFilter: (e) => dispatch(contactsActions.changeFilter(e.target.value)),
-  addContact: (contact) => dispatch(contactsActions.addContact(contact)),
-  deleteContact: (id) => dispatch(contactsActions.deleteContact(id)),
+  fetchContacts: () => dispatch(contactsOperations.fetchContacts()),
+  changeFilter: (e) => dispatch(changeFilter(e.target.value)),
+  addContact: (contact) => dispatch(contactsOperations.addContact(contact)),
+  deleteContact: (id) => dispatch(contactsOperations.deleteContact(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

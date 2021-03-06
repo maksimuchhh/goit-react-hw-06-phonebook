@@ -3,7 +3,6 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import PropTypes from "prop-types";
 import Button from "../Form/Button";
 import "./List.css";
-import { connect } from "react-redux";
 
 const List = ({ contacts, filter, deleteContact }) => {
   if (filter.length > 0) {
