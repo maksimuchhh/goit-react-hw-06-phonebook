@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/goit-react-hw-06-phonebook/static/css/main.ecb2e688.chunk.css",
-    "main.js": "/goit-react-hw-06-phonebook/static/js/main.5dd2ee97.chunk.js",
-    "main.js.map": "/goit-react-hw-06-phonebook/static/js/main.5dd2ee97.chunk.js.map",
-    "runtime-main.js": "/goit-react-hw-06-phonebook/static/js/runtime-main.55a25b1f.js",
-    "runtime-main.js.map": "/goit-react-hw-06-phonebook/static/js/runtime-main.55a25b1f.js.map",
-    "static/js/2.6455215d.chunk.js": "/goit-react-hw-06-phonebook/static/js/2.6455215d.chunk.js",
-    "static/js/2.6455215d.chunk.js.map": "/goit-react-hw-06-phonebook/static/js/2.6455215d.chunk.js.map",
-    "index.html": "/goit-react-hw-06-phonebook/index.html",
-    "static/css/main.ecb2e688.chunk.css.map": "/goit-react-hw-06-phonebook/static/css/main.ecb2e688.chunk.css.map",
-    "static/js/2.6455215d.chunk.js.LICENSE.txt": "/goit-react-hw-06-phonebook/static/js/2.6455215d.chunk.js.LICENSE.txt",
-    "static/media/App.module.css": "/goit-react-hw-06-phonebook/static/media/1920x1200-px-black-background-dark-simple-simple-background-texture-1197234.9d89e7e9.jpg"
+    "main.css": "/goit-react-hw-07-phonebook/static/css/main.bea72687.chunk.css",
+    "main.js": "/goit-react-hw-07-phonebook/static/js/main.3bd3220f.chunk.js",
+    "main.js.map": "/goit-react-hw-07-phonebook/static/js/main.3bd3220f.chunk.js.map",
+    "runtime-main.js": "/goit-react-hw-07-phonebook/static/js/runtime-main.0951b595.js",
+    "runtime-main.js.map": "/goit-react-hw-07-phonebook/static/js/runtime-main.0951b595.js.map",
+    "static/js/2.0a268f5f.chunk.js": "/goit-react-hw-07-phonebook/static/js/2.0a268f5f.chunk.js",
+    "static/js/2.0a268f5f.chunk.js.map": "/goit-react-hw-07-phonebook/static/js/2.0a268f5f.chunk.js.map",
+    "index.html": "/goit-react-hw-07-phonebook/index.html",
+    "static/css/main.bea72687.chunk.css.map": "/goit-react-hw-07-phonebook/static/css/main.bea72687.chunk.css.map",
+    "static/js/2.0a268f5f.chunk.js.LICENSE.txt": "/goit-react-hw-07-phonebook/static/js/2.0a268f5f.chunk.js.LICENSE.txt",
+    "static/media/App.module.css": "/goit-react-hw-07-phonebook/static/media/1920x1200-px-black-background-dark-simple-simple-background-texture-1197234.9d89e7e9.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.55a25b1f.js",
-    "static/js/2.6455215d.chunk.js",
-    "static/css/main.ecb2e688.chunk.css",
-    "static/js/main.5dd2ee97.chunk.js"
+    "static/js/runtime-main.0951b595.js",
+    "static/js/2.0a268f5f.chunk.js",
+    "static/css/main.bea72687.chunk.css",
+    "static/js/main.3bd3220f.chunk.js"
   ]
 }
