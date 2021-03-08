@@ -1,20 +1,20 @@
 import React, { Component } from "react";
+import { CSSTransition } from "react-transition-group";
+import { connect } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 import "./normalize.css";
+import styles from "./App.module.css";
 import Section from "./components/Section";
 import Input from "./components/Form/Input";
 import Form from "./components/Form";
 import List from "./components/List";
-import { CSSTransition } from "react-transition-group";
-import styles from "./App.module.css";
-import { connect } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
+
 import { changeFilter } from "./redux/contactsActions";
 import contactsOperations from "./redux/contactsOperations";
+import { getFilter, getContacts } from "./redux/contactSelectors";
 
 export class App extends Component {
   state = {
-    contacts: [],
-    filter: "",
     error: false,
     errorText: null,
   };
@@ -95,8 +95,8 @@ export class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  filter: state.contacts.filter,
-  contacts: state.contacts.items,
+  filter: getFilter(state),
+  contacts: getContacts(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
