@@ -6,6 +6,7 @@ import AppBar from "./components/Form/AppBar";
 import PublicRoute from "./components/PublicRoute";
 import PrivateRoute from "./components/PrivateRoute";
 import Loader from "./components/Loader";
+import HomePage from "./components/views/HomePage";
 
 const RegisterView = lazy(() => import("./components/views/Register"));
 const LoginView = lazy(() => import("./components/views/Login"));
@@ -21,7 +22,9 @@ class App extends Component {
         <Suspense fallback={<Loader />}>
           <AppBar />
           <Switch>
+            <PublicRoute path="/" exact component={HomePage} />
             <PublicRoute
+              exact
               path="/register"
               restricted
               redirectTo="/contacts"
@@ -29,6 +32,7 @@ class App extends Component {
             />
 
             <PublicRoute
+              exact
               path="/login"
               restricted
               redirectTo="/contacts"
@@ -36,6 +40,7 @@ class App extends Component {
             />
 
             <PrivateRoute
+              exact
               path="/contacts"
               redirectTo="/login"
               component={ContactsView}

@@ -20,6 +20,9 @@ const styles = {
 function AuthNav() {
   return (
     <div style={styles.container}>
+      <NavLink to="/" exact style={styles.link} activeStyle={styles.activeLink}>
+        Home
+      </NavLink>
       <NavLink
         to="/register"
         exact
