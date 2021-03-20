@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 import "./normalize.css";
@@ -7,29 +8,35 @@ import Input from "../../Form/Input";
 import Form from "../../Form";
 import List from "../../List";
 import "./sectionAnimation.css";
-
 import { changeFilter } from "../../../redux/contacts/contactsActions";
 import contactsOperations from "../../../redux/contacts/contactsOperations";
 import {
   getFilter,
   getContacts,
 } from "../../../redux/contacts/contactSelectors";
-import { Component } from "react";
 
-export class Contacts extends Component {
-  state = {
-    error: false,
-    errorText: null,
+export const Contacts = ({
+  filter,
+  contacts,
+  fetchContacts,
+  changeFilter,
+  addContact,
+  deleteContact,
+}) => {
+  const [error, setError] = useState(false);
+  const [errorText, setErrorText] = useState(null);
+
+  const changeError = (text, bool) => {
+    setError(bool);
+    setErrorText(text);
   };
 
-  async componentDidMount() {
-    this.props.fetchContacts();
-  }
+  useEffect(() => {
+    fetchContacts();
+  }, []);
 
-  addContact = (evt, state) => {
+  const handleAddContact = (evt, { name, number }) => {
     evt.preventDefault();
-    const name = state.name;
-    const number = state.number;
     if ((number.length || name.length) === 0) {
       this.setState({ errorText: `Enter all empties`, error: true });
       setTimeout(() => {
@@ -37,67 +44,65 @@ export class Contacts extends Component {
       }, 5000);
       return;
     }
-    const dublicated = this.props.contacts.find((el) => {
+    const dublicated = contacts.find((el) => {
       return el.name === name;
     });
     if (!(dublicated === undefined)) {
-      this.setState({ errorText: `You already add ${name}`, error: true });
+      changeError(`You already add ${name}`, true);
       setTimeout(() => {
-        this.setState({ error: false });
+        setError(false);
       }, 5000);
       return;
     } else {
-      this.props.addContact({
-        name: name,
-        number: number,
+      addContact({
+        name,
+        number,
       });
     }
   };
-  render() {
-    return (
-      <div className={styles.container}>
-        <CSSTransition
-          in={this.state.error !== false}
-          timeout={300}
-          classNames={styles}
-          unmountOnExit
-        >
-          <div className={styles.error}>{this.state.errorText}</div>
-        </CSSTransition>
-        <CSSTransition
-          in={true}
-          timeout={500}
-          appear={true}
-          classNames={styles}
-          unmountOnExit
-        >
-          <h1 className={styles.title}>Phonebook</h1>
-        </CSSTransition>
-        <Form addContact={this.addContact} />
-        <CSSTransition
-          in={this.props.contacts.length > 0}
-          timeout={250}
-          classNames="section"
-          unmountOnExit
-        >
-          <Section title="Contacts">
-            <Input
-              name="filter"
-              isOpen={this.props.contacts.length > 1}
-              changeInputForFilter={this.props.changeFilter}
-            />
+  return (
+    <div className={styles.container}>
+      <CSSTransition
+        in={error !== false}
+        timeout={300}
+        classNames={styles}
+        unmountOnExit
+      >
+        <div className={styles.error}>{errorText}</div>
+      </CSSTransition>
+      <CSSTransition
+        in={true}
+        timeout={500}
+        appear={true}
+        classNames={styles}
+        unmountOnExit
+      >
+        <h1 className={styles.title}>Phonebook</h1>
+      </CSSTransition>
+      <Form addContact={handleAddContact} />
+      <CSSTransition
+        in={contacts.length > 0}
+        timeout={250}
+        classNames="section"
+        unmountOnExit
+      >
+        <Section title="Contacts">
+          <Input
+            name="filter"
+            isOpen={contacts.length > 1}
+            changeInputForFilter={changeFilter}
+          />
 
-            <List
-              contacts={this.props.contacts}
-              filter={this.props.filter}
-              deleteContact={this.props.deleteContact}
-            />
-          </Section>
-        </CSSTransition>
-      </div>
-    );
-  }
-}
+          <List
+            contacts={contacts}
+            filter={filter}
+            deleteContact={deleteContact}
+          />
+        </Section>
+      </CSSTransition>
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => ({
   filter: getFilter(state),
